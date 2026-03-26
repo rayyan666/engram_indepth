@@ -21,23 +21,17 @@ It intercepts tokens, looks up a pre-trained embedding via multi-head
 hashing, gates it against the current hidden state, and injects the result
 into the residual stream.
 
-### Transformer Block with Engram Injection
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180316.png" alt="Workflow" width="200"  />
-
 ### Full Engram Forward Pass Pipeline
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180339.png" alt="Workflow" height="300"  />
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180339.png" alt="Workflow" />
 
 ###  Multi-Head Hashing
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180350.png" alt="Workflow" height="400" />
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180350.png" alt="Workflow" height="300" />
 
 ### Context Gate — Static vs Dynamic Tokens
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180359.png" alt="Workflow" height="300" />
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180359.png" alt="Workflow" />
 
 ### Tokenizer Compression
 <img src="explanation_diagrams\mermaid-diagram-2026-03-26-180412.png" alt="Workflow" height="400" />
-
-### MiniModel Layer-by-Layer — Baseline vs Engram
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180429.png" alt="Workflow" width="300" />
 
 ### Compute-Liberation Effect (Why Reasoning Also Improves)
 <img src="explanation_diagrams\mermaid-diagram-2026-03-26-180445.png" alt="Workflow" height="400" />
