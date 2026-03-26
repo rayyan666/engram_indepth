@@ -5,6 +5,7 @@ A clean, self-contained Python project that walks through every component of
 
 > *"Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"*  
 > url : [Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models](https://arxiv.org/abs/2601.07372)
+
 > Xin Cheng et al., DeepSeek AI & Peking University, January 2026.
 
 ---
@@ -36,7 +37,7 @@ into the residual stream.
 <img src="explanation_diagrams\mermaid-diagram-2026-03-26-180412.png" alt="Workflow" height="400" />
 
 ### MiniModel Layer-by-Layer — Baseline vs Engram
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180429.png" alt="Workflow" height="300" />
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180429.png" alt="Workflow" width="300" />
 
 ### Compute-Liberation Effect (Why Reasoning Also Improves)
 <img src="explanation_diagrams\mermaid-diagram-2026-03-26-180445.png" alt="Workflow" height="400" />
