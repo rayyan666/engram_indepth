@@ -2,10 +2,7 @@ import numpy as np
 from typing import List, Tuple, Optional
 from engram.core import EngramModule, EngramConfig
 
-
-# ---------------------------------------------------------------------------
 # Tiny helpers (real impl would use PyTorch / JAX)
-# ---------------------------------------------------------------------------
 
 def layer_norm(x: np.ndarray, eps: float = 1e-5) -> np.ndarray:
     mean = x.mean(axis=-1, keepdims=True)
@@ -30,9 +27,7 @@ def fake_ffn(h: np.ndarray) -> np.ndarray:
     return h * (1 / (1 + np.exp(-h)))  # sigmoid-scaled (approx GELU)
 
 
-# ---------------------------------------------------------------------------
 # Transformer Block with optional Engram injection
-# ---------------------------------------------------------------------------
 
 class TransformerBlockWithEngram:
     """
@@ -76,10 +71,7 @@ class TransformerBlockWithEngram:
 
         return h, trace
 
-
-# ---------------------------------------------------------------------------
 # Mini Model: stacks N transformer blocks
-# ---------------------------------------------------------------------------
 
 class MiniModelWithEngram:
     """

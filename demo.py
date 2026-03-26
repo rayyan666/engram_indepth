@@ -2,7 +2,6 @@ import numpy as np
 import sys
 import os
 
-# Make sure local package is importable
 sys.path.insert(0, os.path.dirname(__file__))
 
 from engram.core import (
@@ -15,10 +14,6 @@ from engram.core import (
 )
 from engram.transformer import MiniModelWithEngram
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Helpers
-# ─────────────────────────────────────────────────────────────────────────────
 
 def hr(char="─", width=70):
     print(char * width)
@@ -33,10 +28,7 @@ def fmt_vec(v: np.ndarray, max_elems: int = 6) -> str:
     elems = v.flat[:max_elems]
     return "[" + ", ".join(f"{x:+.4f}" for x in elems) + " ...]"
 
-
-# ─────────────────────────────────────────────────────────────────────────────
 # Toy vocabulary (simulating DeepSeek-V3's 128k tokenizer)
-# ─────────────────────────────────────────────────────────────────────────────
 
 # A sentence with both "static" (entity) and "dynamic" (reasoning) tokens
 # "Paris is the capital of France and its Eiffel Tower is famous"
@@ -51,9 +43,7 @@ token_ids = [VOCAB[t.lower().strip()] for t in TOKENS]
 shifted_ids = [t + 96 if i % 3 == 0 else t for i, t in enumerate(token_ids)]
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# STEP 1 — Tokenizer Compression
-# ─────────────────────────────────────────────────────────────────────────────
+# STEP 1 Tokenizer Compression
 
 section("STEP 1 · Tokenizer Compression  (Paper §3.1)")
 print("""
@@ -74,9 +64,7 @@ collisions = sum(1 for o, c in zip(original, canonical) if o != c)
 print(f"\n  ✓  {collisions}/{len(original)} tokens normalised to canonical form")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# STEP 2 — Multi-Head Hashing
-# ─────────────────────────────────────────────────────────────────────────────
+# STEP 2  Multi-Head Hashing
 
 section("STEP 2 · Multi-Head Hashing  (Paper §3.2)")
 print("""
@@ -104,9 +92,7 @@ for ng in test_ngrams:
     print(f"  {str(ng):<30} {buckets}")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# STEP 3 — Memory Table Lookup
-# ─────────────────────────────────────────────────────────────────────────────
+# STEP 3  Memory Table Lookup
 
 section("STEP 3 · Memory Table Lookup  (Paper §3.3)")
 print("""
@@ -125,10 +111,7 @@ for ng in test_ngrams:
     vec = mem_table.lookup(buckets)
     print(f"  {str(ng):<30} norm={np.linalg.norm(vec):.4f}  {fmt_vec(vec)}")
 
-
-# ─────────────────────────────────────────────────────────────────────────────
 # STEP 4 — Context-Aware Gate
-# ─────────────────────────────────────────────────────────────────────────────
 
 section("STEP 4 · Context-Aware Gate  (Paper §3.4)")
 print("""
@@ -162,9 +145,7 @@ for label, h in scenarios:
     print(f"  {label:<40} {alpha.mean():>12.4f}  {np.linalg.norm(gated):>12.4f}")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# STEP 5 — Full EngramModule forward pass
-# ─────────────────────────────────────────────────────────────────────────────
+# STEP 5 Full EngramModule forward pass
 
 section("STEP 5 · Full EngramModule Forward Pass")
 print(f"""
@@ -205,10 +186,7 @@ for step in trace["steps"]:
         f"{step['gate_strength']:>8.4f}  {step['memory_norm']:>8.4f}"
     )
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# STEP 6 — Full Transformer pass: baseline vs Engram
-# ─────────────────────────────────────────────────────────────────────────────
+# STEP 6  Full Transformer pass: baseline vs Engram
 
 section("STEP 6 · Transformer Pass — Baseline MoE vs Engram")
 print("""
@@ -244,10 +222,7 @@ for t in all_traces:
         f"  {t['layer']:<8} {engram_tag:<10} {engram_norm:<20} {t['hidden_norm_after']:.6f}"
     )
 
-
-# ─────────────────────────────────────────────────────────────────────────────
 # Summary
-# ─────────────────────────────────────────────────────────────────────────────
 
 section("SUMMARY — What Engram Solves")
 print("""

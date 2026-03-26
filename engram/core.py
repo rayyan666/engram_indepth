@@ -4,30 +4,27 @@ import numpy as np
 from dataclasses import dataclass
 from typing import List, Tuple, Optional
 
-
-# ---------------------------------------------------------------------------
 # 1. Tokenizer Compression  (paper §3.1)
-# ---------------------------------------------------------------------------
 
 class TokenizerCompressor:
     """
-    Surjective mapping  P : V → V′
+    subjective mapping  P : V → V′
     Collapses token IDs that differ only in case / leading-space so that
-    "Apple", "apple", " apple" all hash to the same canonical slot.
-    This maximises *semantic density* of the N-gram tables.
+    "Apple", "apple", " apple" all hash to the same canonical slot
+    This maximises *semantec density* of the N-gram tables.
     """
 
     def __init__(self, vocab_size: int = 128_000):
         self.vocab_size = vocab_size
         # Precompute a simple deterministic canonical map
-        # (real impl uses tokenizer metadata; here we use mod-arithmetic)
+        # real impl uses tokenizer metadata; here we use mod-arithmetic
         self._canon_map = self._build_canon_map()
 
     def _build_canon_map(self) -> np.ndarray:
         """Map every token → its canonical token-id (strip case / spacing)."""
         canon = np.arange(self.vocab_size, dtype=np.int32)
-        # Simulate: tokens that are "shifted" variants point to their base form
-        # e.g. token 32 and 32+96 represent same word with/without leading space
+        # simulate: tokens that are "shifted" variants point to their base form
+        # e.g. token 32 and 32+96 represent same word with orwithout leading space
         shift = 96
         for i in range(shift, self.vocab_size):
             canon[i] = i - shift  # collapse to base
@@ -44,14 +41,14 @@ class TokenizerCompressor:
 
 class MultiHeadHasher:
     """
-    Maps an N-gram (tuple of canonical token-ids) → H bucket indices,
+    maps an N-gram (tuple of canonical token-ids) → H bucket indices,
     one per head.  Uses deterministic SHA-256 seeded hashing so there are
     NO learnable parameters here — only the embedding values are learned.
 
-    Why multiple heads?
-      Collisions in a single hash table would cause catastrophic interference.
+    why multiple heads?
+      Collisions in a single hash table would cause catastrophic interference
       H independent hash functions spread load and let the model average out
-      collision noise, similar to multi-head attention.
+      collision noise, similar to multihead attention.
     """
 
     def __init__(self, num_heads: int = 8, table_size: int = 65_536):
@@ -73,10 +70,7 @@ class MultiHeadHasher:
             indices.append(idx)
         return indices
 
-
-# ---------------------------------------------------------------------------
 # 3. Engram Memory Table  (paper §3.3)
-# ---------------------------------------------------------------------------
 
 class EngramMemoryTable:
     """
@@ -108,10 +102,7 @@ class EngramMemoryTable:
         rows = [self.table[h, idx] for h, idx in enumerate(head_indices)]
         return np.mean(rows, axis=0)  # multi-head average
 
-
-# ---------------------------------------------------------------------------
 # 4. Context-Aware Gate  (paper §3.4)
-# ---------------------------------------------------------------------------
 
 class ContextGate:
     """
@@ -146,10 +137,7 @@ class ContextGate:
         alpha = self._sigmoid(self.W_g @ hidden_state + self.b_g)  # (embed_dim,)
         return alpha * memory_vec
 
-
-# ---------------------------------------------------------------------------
 # 5. EngramModule  (full forward pass, paper §3)
-# ---------------------------------------------------------------------------
 
 @dataclass
 class EngramConfig:
@@ -184,7 +172,6 @@ class EngramModule:
             (config.hidden_dim, config.embed_dim)
         ).astype(np.float32)
 
-    # ------------------------------------------------------------------
     def forward(
         self,
         token_ids: List[int],
