@@ -22,7 +22,7 @@ hashing, gates it against the current hidden state, and injects the result
 into the residual stream.
 
 ### Transformer Block with Engram Injection
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180316.png" alt="Workflow" height="300"  />
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180316.png" alt="Workflow" width="200"  />
 
 ### Full Engram Forward Pass Pipeline
 <img src="explanation_diagrams\mermaid-diagram-2026-03-26-180339.png" alt="Workflow" height="300"  />
