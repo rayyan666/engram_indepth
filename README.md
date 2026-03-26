@@ -4,7 +4,7 @@ A clean, self-contained Python project that walks through every component of
 **DeepSeek's Engram architecture** from the paper:
 
 > *"Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models"*  
-> url : [text](https://arxiv.org/abs/2601.07372)
+> url : [Conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models](https://arxiv.org/abs/2601.07372)
 > Xin Cheng et al., DeepSeek AI & Peking University, January 2026.
 
 ---
@@ -20,7 +20,7 @@ It intercepts tokens, looks up a pre-trained embedding via multi-head
 hashing, gates it against the current hidden state, and injects the result
 into the residual stream.
 
-
+![Alt Text](explanation_diagrams\mermaid-diagram-2026-03-26-180316.png)
 
 ## Project Layout
 
