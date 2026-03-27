@@ -22,22 +22,7 @@ hashing, gates it against the current hidden state, and injects the result
 into the residual stream.
 
 ### Deconstructed workflow
-<img src="explanation_diagrams\mermaid-diagram-2026-03-27-132041.png" alt="Workflow" />
-
-### Full Engram Forward Pass Pipeline
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180339.png" alt="Workflow" />
-
-###  Multi-Head Hashing
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180350.png" alt="Workflow" height="300" />
-
-### Context Gate — Static vs Dynamic Tokens
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180359.png" alt="Workflow" />
-
-### Tokenizer Compression
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180412.png" alt="Workflow" height="400" />
-
-### Compute-Liberation Effect (Why Reasoning Also Improves)
-<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180445.png" alt="Workflow" height="400" />
+<img src="explanation_diagrams\mermaid-diagram-2026-03-27-132041.png" alt="Workflow" height="300" />
 
 ## Project Layout
 
@@ -90,3 +75,18 @@ python demo.py
 The reasoning/math gains (larger than pure knowledge gains) are explained
 by the **compute-liberation** effect: offloading static patterns frees early
 layers to act as *deeper* reasoning layers.
+
+### Full Engram Forward Pass Pipeline
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180339.png" alt="Workflow" />
+
+###  Multi-Head Hashing
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180350.png" alt="Workflow" height="300" />
+
+### Context Gate — Static vs Dynamic Tokens
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180359.png" alt="Workflow" />
+
+### Tokenizer Compression
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180412.png" alt="Workflow" height="400" />
+
+### Compute-Liberation Effect (Why Reasoning Also Improves)
+<img src="explanation_diagrams\mermaid-diagram-2026-03-26-180445.png" alt="Workflow" height="400" />
