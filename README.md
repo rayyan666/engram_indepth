@@ -21,6 +21,9 @@ It intercepts tokens, looks up a pre-trained embedding via multi-head
 hashing, gates it against the current hidden state, and injects the result
 into the residual stream.
 
+### Deconstructed workflow
+<img src="explanation_diagrams\mermaid-diagram-2026-03-27-132041.png" alt="Workflow" />
+
 ### Full Engram Forward Pass Pipeline
 <img src="explanation_diagrams\mermaid-diagram-2026-03-26-180339.png" alt="Workflow" />
 
